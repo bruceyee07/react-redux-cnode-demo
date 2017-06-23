@@ -12,21 +12,21 @@ class AsyncApp extends Component {
 		this.handleClickTab = this.handleClickTab.bind(this)
 	}
 	componentDidMount () {
-		const { dispatch, clickedTab } = this.props
-		dispatch(fetchTopics(clickedTab))
+		const { dispatch, tab } = this.props
+		dispatch(fetchTopics(tab))
 	}
 	render () {
-		const { clickedTab, topics, isFetching } = this.props
+		const { isFetching, tab, topicsByTab } = this.props
 
 		return (
 			<div>
 				<NavTab
 					handleClickTab={this.handleClickTab}
 			 	/>
-			 	<TopicList
-			 		topics={topics}
-			 		isFetching={isFetching}
-		 		/>
+	 		 	<TopicList
+	 		 		isFetching={isFetching}
+	 		 		topics={topicsByTab[tab] || []}
+	 	 		/>
 			</div>
 		)
 	}
@@ -37,26 +37,19 @@ class AsyncApp extends Component {
 }
 
 AsyncApp.propTypes = {
-	clickedTab: PropTypes.string.isRequired,
-	topics: PropTypes.array.isRequired,
 	isFetching: PropTypes.bool.isRequired,
+	tab: PropTypes.string.isRequired,
+	topicsByTab: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
-	const { clickedTab, topicsByTab } = state
-	const { 
-		isFetching, 
-		items: topics 
-	} = topicsByTab[clickedTab] || { 
-		isFetching: true, 
-		items: [] 
-	}
+	const {isFetching, tab, topicsByTab } = state
 
 	return {
-		clickedTab,
-		topics,
-		isFetching
+		isFetching,
+		tab,
+		topicsByTab
 	}
 }
 

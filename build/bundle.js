@@ -4744,7 +4744,7 @@ exports.requestTopicDetail = requestTopicDetail;
 exports.receiveTopicDetail = receiveTopicDetail;
 exports.fetchTopicDetail = fetchTopicDetail;
 
-var _isomorphicFetch = __webpack_require__(233);
+var _isomorphicFetch = __webpack_require__(234);
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -11606,7 +11606,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(239);
+var	fixUrls = __webpack_require__(240);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -23950,7 +23950,7 @@ var _stores = __webpack_require__(229);
 
 var _stores2 = _interopRequireDefault(_stores);
 
-var _asyncApp = __webpack_require__(235);
+var _asyncApp = __webpack_require__(236);
 
 var _asyncApp2 = _interopRequireDefault(_asyncApp);
 
@@ -25572,16 +25572,16 @@ var _reduxLogger = __webpack_require__(231);
 
 var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-var _reducers = __webpack_require__(232);
+var _index = __webpack_require__(232);
 
-var _reducers2 = _interopRequireDefault(_reducers);
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxLogger2.default)(_redux.createStore);
 
 function configureStore(initialState) {
-	return createStoreWithMiddleware(_reducers2.default, initialState);
+	return createStoreWithMiddleware(_index2.default, initialState);
 }
 
 /***/ }),
@@ -25916,60 +25916,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _redux = __webpack_require__(54);
 
-var _actions = __webpack_require__(34);
+var _homePage = __webpack_require__(233);
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _homePage2 = _interopRequireDefault(_homePage);
 
-function clickedTab() {
-	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'all';
-	var action = arguments[1];
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	switch (action.type) {
-		case _actions.CLICK_TAB:
-			return action.tab;
-		default:
-			return state;
-	}
-}
-
-function topics() {
-	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-		isFetching: false,
-		items: []
-	};
-	var action = arguments[1];
-
-	switch (action.type) {
-		case _actions.REQUEST_TOPICS:
-			return _extends({}, state, { isFetching: true });
-		case _actions.RECEIVE_TOPICS:
-			return _extends({}, state, { isFetching: false, items: action.topics });
-		default:
-			return state;
-	}
-}
-
-function topicsByTab() {
-	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	var action = arguments[1];
-
-	switch (action.type) {
-		case _actions.REQUEST_TOPICS:
-		case _actions.RECEIVE_TOPICS:
-			return _extends({}, state, _defineProperty({}, action.tab, topics(state[action.tab], action)));
-		default:
-			return state;
-	}
-}
-
-var rootReducer = (0, _redux.combineReducers)({ clickedTab: clickedTab, topicsByTab: topicsByTab });
+var rootReducer = _homePage2.default;
 
 exports.default = rootReducer;
 
@@ -25980,15 +25938,55 @@ exports.default = rootReducer;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = homePage;
+
+var _actions = __webpack_require__(34);
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function homePage() {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+		isFetching: false,
+		tab: 'all',
+		topicsByTab: {}
+	};
+	var action = arguments[1];
+
+	switch (action.type) {
+		case _actions.CLICK_TAB:
+			return _extends({}, state, { tab: action.tab });
+		case _actions.REQUEST_TOPICS:
+			return _extends({}, state, { isFetching: true });
+		case _actions.RECEIVE_TOPICS:
+			var topicsByTab = Object.assign({}, state.topicsByTab, _defineProperty({}, action.tab, action.topics));
+			return _extends({}, state, { isFetching: false, topicsByTab: topicsByTab });
+		default:
+			return state;
+	}
+}
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 // the whatwg-fetch polyfill installs the fetch() function
 // on the global object (window or self)
 //
 // Return that as the export for use in Webpack, Browserify etc.
-__webpack_require__(234);
+__webpack_require__(235);
 module.exports = self.fetch.bind(self);
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26453,7 +26451,7 @@ module.exports = self.fetch.bind(self);
 })(typeof self !== 'undefined' ? self : undefined);
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26475,11 +26473,11 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRedux = __webpack_require__(90);
 
-var _NavTab = __webpack_require__(236);
+var _NavTab = __webpack_require__(237);
 
 var _NavTab2 = _interopRequireDefault(_NavTab);
 
-var _TopicList = __webpack_require__(240);
+var _TopicList = __webpack_require__(241);
 
 var _TopicList2 = _interopRequireDefault(_TopicList);
 
@@ -26510,17 +26508,17 @@ var AsyncApp = function (_Component) {
 		value: function componentDidMount() {
 			var _props = this.props,
 			    dispatch = _props.dispatch,
-			    clickedTab = _props.clickedTab;
+			    tab = _props.tab;
 
-			dispatch((0, _actions.fetchTopics)(clickedTab));
+			dispatch((0, _actions.fetchTopics)(tab));
 		}
 	}, {
 		key: 'render',
 		value: function render() {
 			var _props2 = this.props,
-			    clickedTab = _props2.clickedTab,
-			    topics = _props2.topics,
-			    isFetching = _props2.isFetching;
+			    isFetching = _props2.isFetching,
+			    tab = _props2.tab,
+			    topicsByTab = _props2.topicsByTab;
 
 
 			return _react2.default.createElement(
@@ -26530,8 +26528,8 @@ var AsyncApp = function (_Component) {
 					handleClickTab: this.handleClickTab
 				}),
 				_react2.default.createElement(_TopicList2.default, {
-					topics: topics,
-					isFetching: isFetching
+					isFetching: isFetching,
+					topics: topicsByTab[tab] || []
 				})
 			);
 		}
@@ -26547,34 +26545,29 @@ var AsyncApp = function (_Component) {
 }(_react.Component);
 
 AsyncApp.propTypes = {
-	clickedTab: _propTypes2.default.string.isRequired,
-	topics: _propTypes2.default.array.isRequired,
 	isFetching: _propTypes2.default.bool.isRequired,
+	tab: _propTypes2.default.string.isRequired,
+	topicsByTab: _propTypes2.default.object.isRequired,
 	dispatch: _propTypes2.default.func.isRequired
 };
 
 var mapStateToProps = function mapStateToProps(state) {
-	var clickedTab = state.clickedTab,
+	var isFetching = state.isFetching,
+	    tab = state.tab,
 	    topicsByTab = state.topicsByTab;
 
-	var _ref = topicsByTab[clickedTab] || {
-		isFetching: true,
-		items: []
-	},
-	    isFetching = _ref.isFetching,
-	    topics = _ref.items;
 
 	return {
-		clickedTab: clickedTab,
-		topics: topics,
-		isFetching: isFetching
+		isFetching: isFetching,
+		tab: tab,
+		topicsByTab: topicsByTab
 	};
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(AsyncApp);
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26596,7 +26589,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _actions = __webpack_require__(34);
 
-var _styleModule = __webpack_require__(237);
+var _styleModule = __webpack_require__(238);
 
 var _styleModule2 = _interopRequireDefault(_styleModule);
 
@@ -26665,13 +26658,13 @@ var NavTab = function (_Component) {
 exports.default = NavTab;
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(238);
+var content = __webpack_require__(239);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -26696,7 +26689,7 @@ if(false) {
 }
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(98)(undefined);
@@ -26710,7 +26703,7 @@ exports.push([module.i, ".test {\n  color: #f00;\n  list-style: none;\n}\n", ""]
 
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26805,7 +26798,7 @@ module.exports = function (css) {
 };
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26827,7 +26820,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _actions = __webpack_require__(34);
 
-var _styleModule = __webpack_require__(241);
+var _styleModule = __webpack_require__(242);
 
 var _styleModule2 = _interopRequireDefault(_styleModule);
 
@@ -26852,10 +26845,11 @@ var TopicList = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
-			    topics = _props.topics,
-			    isFetching = _props.isFetching;
+			    isFetching = _props.isFetching,
+			    topics = _props.topics;
 
 
+			console.log(isFetching);
 			return _react2.default.createElement(
 				'div',
 				null,
@@ -26894,13 +26888,13 @@ var TopicList = function (_Component) {
 exports.default = TopicList;
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(242);
+var content = __webpack_require__(243);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -26925,7 +26919,7 @@ if(false) {
 }
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(98)(undefined);

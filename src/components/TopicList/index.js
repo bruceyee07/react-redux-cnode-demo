@@ -5,8 +5,9 @@ import style from './style.module.styl'
 
 export default class TopicList extends Component {
 	render () {
-		const { topics, isFetching } = this.props
+		const { isFetching, topics } = this.props
 
+		console.log(isFetching)
 		return (
    		<div>
 				{isFetching && topics.length === 0 &&
