@@ -1,64 +1,63 @@
 import fetch from 'isomorphic-fetch'
 
-export const REQUEST_POSTS = 'REQUEST_POSTS'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT'
-export const INVALIDATE_SUBREDDIT  = 'INVALIDATE_SUBREDDIT'
+export const CLICK_TAB = 'CLICK_TAB'
+export const REQUEST_TOPICS = 'REQUEST_TOPICS'
+export const RECEIVE_TOPICS = 'RECEIVE_TOPICS'
+export const CLICK_TOPIC = 'CLICK_TOPIC'
+export const REQUEST_TOPIC_DETAIL = 'REQUEST_TOPIC_DETAIL'
+export const RECEIVE_TOPIC_DETAIL = 'RECEIVE_TOPIC_DETAIL'
 
-export function selectSubreddit (subreddit) {
-	return  {
-		type: SELECT_SUBREDDIT,
-		subreddit
-	}
-}
-
-export function invalidateSubreddit (subreddit) {
-  return {
-    type: INVALIDATE_SUBREDDIT ,
-    subreddit
-  }
-}
-
-export function requestPosts (subreddit) {
-  return {
-    type: REQUEST_POSTS,
-    subreddit
-  }
-}
-
-export function receivePosts (subreddit, json) {
+export function tabClick (tab) {
 	return {
-    type: RECEIVE_POSTS,
-    subreddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-  }
-}
-
-export function fetchPosts (subreddit) {
-	return dispatch => {
-		dispatch(requestPosts(subreddit))
-		return fetch(`http://www.reddit.com/r/${subreddit}.json`)
-      .then(response => response.json())
-      .then(json => dispatch(receivePosts(subreddit, json)))
+		type: CLICK_TAB,
+		tab
 	}
 }
 
-export function shouldFetchPosts (state, subreddit) {
-	const posts = state.postsBySubreddit[subreddit]
-  if (!posts) {
-    return true
-  } else if (posts.isFetching) {
-    return false
-  } else {
-    return posts.didInvalidate
-  }
+export function requestTopics (tab) {
+	return {
+		type: REQUEST_TOPICS,
+		tab
+	}
 }
 
-export function fetchPostsIfNeeded (subreddit) {
-  return (dispatch, getState) => {
-    if (shouldFetchPosts(getState(), subreddit)) {
-      return dispatch(fetchPosts(subreddit))
-    }
-  }
+export function receiveTopics (tab, json) {
+	return {
+		type: RECEIVE_TOPICS,
+		tab,
+		topics: json.data.map(child => child)
+	}
+}
+
+export function fetchTopics (tab = 'all', page = 1, limit = 20) {
+	return dispatch => {
+		dispatch(requestTopics(tab))
+		return fetch(`https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}&limit=${limit}&mdrender=false`)
+			.then(res => res.json())
+			.then(json => dispatch(receiveTopics(tab, json)))
+	}
+}
+
+export function requestTopicDetail (id) {
+	return  {
+		type: REQUEST_TOPIC_DETAIL,
+		id
+	}
+}
+
+export function receiveTopicDetail (id, json) {
+	return {
+		type: RECEIVE_TOPIC_DETAIL,
+		id,
+		detail: json.data
+	}
+}
+
+export function fetchTopicDetail (id) {
+	return dispatch => {
+		dispatch(requestTopicDetail(id))
+		return fetch(`https://cnodejs.org/api/v1/topic/${id}`)
+			.then(res => res.json())
+			.then(json => dispatch(receiveTopicDetail(id, json)))
+	}
 }

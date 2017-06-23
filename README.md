@@ -1,1 +1,1 @@
-# react-redux-fetchPosts
+# react-redux-cnode-demo
