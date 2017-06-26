@@ -1,10 +1,14 @@
 const path = require('path')
 
+console.log(process.env.NODE_ENV)
+console.log(111)
+
 module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: './src'
 	},
 	module: {
 		rules: [

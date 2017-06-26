@@ -38,6 +38,13 @@ export function fetchTopics (tab = 'all', page = 1, limit = 20) {
 	}
 }
 
+export function topicClick (id) {
+	return {
+		type: CLICK_TOPIC,
+		id
+	}
+}
+
 export function requestTopicDetail (id) {
 	return  {
 		type: REQUEST_TOPIC_DETAIL,

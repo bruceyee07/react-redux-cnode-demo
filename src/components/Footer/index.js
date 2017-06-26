@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { tabClick } from '../../actions'
-import style from './style.module.styl'
+import style from './style.styl'
 
 export default class Footer extends Component {
 	render () {

@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { tabClick } from '../../actions'
-import style from './style.module.styl'
+import { Link } from 'react-router-dom'
+import style from './style.styl'
 
 export default class TopicList extends Component {
 	render () {
 		const { isFetching, topics } = this.props
-
-		console.log(isFetching)
+		
 		return (
    		<div>
 				{isFetching && topics.length === 0 &&
@@ -18,8 +17,17 @@ export default class TopicList extends Component {
 	      }
 	      {!!topics.length &&
 	        <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-	          <ul>
-	          	{topics.map(topic => <li key={topic.id}>{topic.title}</li>)}
+	          <ul className="topic-list">
+	          	{topics.map(topic => 
+	          		<li key={topic.id}>
+	          			<Link 
+	          				to={`/topic/${topic.id}`}
+	          				onClick={() => this.props.handleClickTopic(topic.id)}
+          				>
+          					{topic.title}
+        					</Link>	
+        				</li>
+          		)}
 	          </ul>
 	        </div>
 	      }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { tabClick } from '../../actions'
-import style from './style.module.styl'
+import './style.styl'
 
 const TABS = [
 	{
@@ -31,7 +30,7 @@ export default class NavTab extends Component {
 		const { handleClickTab } = this.props
 
 		return (
-			<ul className={style.test}>
+			<ul className="nav-tab">
 				{TABS.map(tab => 
 					<li 
 						key={tab.code}
