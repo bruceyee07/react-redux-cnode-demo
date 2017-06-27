@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import './style.styl'
 
 const TABS = [
@@ -27,13 +28,14 @@ const TABS = [
 
 export default class NavTab extends Component {
 	render () {
-		const { handleClickTab } = this.props
+		const { handleClickTab, currentTab } = this.props
 
 		return (
 			<ul className="nav-tab">
 				{TABS.map(tab => 
-					<li 
+					<li
 						key={tab.code}
+						className={cx({active: tab.code == currentTab})}
 						onClick={() => handleClickTab(tab.code)}
 					>
 						{tab.title}

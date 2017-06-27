@@ -25,6 +25,7 @@ class HomePage extends Component {
    		<div>
    			<NavTab
 					handleClickTab={this.handleClickTab}
+					currentTab={homePage.tab}
 			 	/>
 	 		 	<TopicList
 	 		 		isFetching={homePage.isFetching}

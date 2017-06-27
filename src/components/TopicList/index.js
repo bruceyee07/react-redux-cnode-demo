@@ -20,12 +20,18 @@ export default class TopicList extends Component {
 	          <ul className="topic-list">
 	          	{topics.map(topic => 
 	          		<li key={topic.id}>
-	          			<Link 
-	          				to={`/topic/${topic.id}`}
-	          				onClick={() => this.props.handleClickTopic(topic.id)}
-          				>
-          					{topic.title}
-        					</Link>	
+	          			<div className="left-wrap">
+	          				<img className="avatar" src={topic.author['avatar_url']} alt={topic.author['loginname']} />
+	          			</div>
+	          			<div className="right-wrap">
+		          			<Link 
+		          				to={`/topic/${topic.id}`}
+		          				className="title"
+		          				onClick={() => this.props.handleClickTopic(topic.id)}
+	          				>
+	          					{topic.title}
+	        					</Link>	
+	          			</div>
         				</li>
           		)}
 	          </ul>
