@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import NavTab from '../NavTab'
@@ -46,7 +47,7 @@ class HomePage extends Component {
 const mapStateToProps = state => {
 	const { homePage } = state
 
-	return homePage
+	return { homePage }
 }
 
 export default connect(mapStateToProps)(HomePage)

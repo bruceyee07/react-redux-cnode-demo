@@ -5,7 +5,7 @@ import style from './style.styl'
 export default class TopicContent extends Component {
 	render () {
 		return (
-		  <p>hello world</p>
+		  <p>yyy</p>
 		)
 	}
 }
