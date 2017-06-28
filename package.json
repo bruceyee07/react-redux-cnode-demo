@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --inline --port 8888 --history-api-fallback",
-    "start": "webpack-dev-server --config webpack.config.js"
+    "dev": "webpack-dev-server --devtool eval --inline --port 8888 --history-api-fallback",
+    "start": "webpack-dev-server --inline --port 8888 --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
