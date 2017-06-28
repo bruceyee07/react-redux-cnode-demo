@@ -29,6 +29,7 @@ const TABS = [
 export default class TopicList extends Component {
 	render () {
 		const { isFetching, topics } = this.props
+		console.log(topics)
 		
 		return (
    		<div>
@@ -60,7 +61,7 @@ export default class TopicList extends Component {
 		          			</div>
 	        					<div className="bottom-info">
 	        						<span>{topic.reply_count} / {topic.visit_count}</span>
-	        						<span className="topic-info">{TABS.filter(item => item.code == topic.tab)[0].title}</span>
+	        						<span className="topic-info">{(TABS.filter(item => item.code == topic.tab)[0] || {}).title}</span>
 	        						<span className="date-info">{new Date(topic.create_at).toLocaleString()}</span>
 	        					</div>
 	          			</div>
