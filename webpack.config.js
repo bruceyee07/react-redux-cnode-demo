@@ -7,13 +7,9 @@ module.exports = {
 		path: path.resolve(__dirname, 'build'),
 		filename: 'bundle.js'
 	},
-	devServer: {
-    historyApiFallback: true,
-    inline: true
-	},
-	// plugins: [
- //    new webpack.HotModuleReplacementPlugin()
- //  ],
+	plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
 	module: {
 		rules: [
 			{
