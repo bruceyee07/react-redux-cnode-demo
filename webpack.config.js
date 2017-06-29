@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
 module.exports = {
 	entry: './src/index.js',
@@ -8,7 +9,8 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new OpenBrowserPlugin({ url: 'http://localhost:8888' })
   ],
 	module: {
 		rules: [

@@ -29,7 +29,6 @@ const TABS = [
 export default class TopicList extends Component {
 	render () {
 		const { isFetching, topics } = this.props
-		console.log(topics)
 		
 		return (
    		<div>
