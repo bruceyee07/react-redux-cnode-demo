@@ -16,13 +16,14 @@ class HomePage extends Component {
 	}
 	componentDidMount() {
 		const { dispatch, homePage } = this.props
+		
 		dispatch(fetchTopics(homePage.tab))
 	}
 	render () {
 		const { homePage } = this.props
 
 		return (
-   		<div>
+   		<div className="homepage-wrapper">
    			<NavTab
 					handleClickTab={this.handleClickTab}
 					currentTab={homePage.tab}
