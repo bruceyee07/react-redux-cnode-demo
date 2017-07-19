@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import NavTab from '../NavTab'
 import TopicList from '../TopicList'
-import { tabClick, fetchTopics, topicClick, fetchTopicDetail } from '../../actions'
+import { tabClick, fetchTopics, topicClick, fetchTopicDetail, userAvatarClick, fetchUserInfo } from '../../actions'
 import style from './style.styl'
 
 class HomePage extends Component {
@@ -13,6 +13,7 @@ class HomePage extends Component {
 
 		this.handleClickTab = this.handleClickTab.bind(this)
 		this.handleClickTopic = this.handleClickTopic.bind(this)
+		this.handleClickUserAvatar = this.handleClickUserAvatar.bind(this)
 	}
 	componentDidMount() {
 		const { dispatch, homePage } = this.props
@@ -32,6 +33,7 @@ class HomePage extends Component {
 	 		 		isFetching={homePage.isFetching}
 	 		 		topics={homePage.topicsByTab[homePage.tab] || []}
 	 		 		handleClickTopic={this.handleClickTopic}
+	 		 		handleClickUserAvatar={this.handleClickUserAvatar}
 	 	 		/>
    		</div>
 		)
@@ -43,6 +45,10 @@ class HomePage extends Component {
 	handleClickTopic (id) {
 		this.props.dispatch(topicClick(id))
 		this.props.dispatch(fetchTopicDetail(id))
+	}
+	handleClickUserAvatar (userName) {
+		this.props.dispatch(userAvatarClick(userName))
+		this.props.dispatch(fetchUserInfo(userName))
 	}
 }
 

@@ -6,6 +6,9 @@ export const RECEIVE_TOPICS = 'RECEIVE_TOPICS'
 export const CLICK_TOPIC = 'CLICK_TOPIC'
 export const REQUEST_TOPIC_DETAIL = 'REQUEST_TOPIC_DETAIL'
 export const RECEIVE_TOPIC_DETAIL = 'RECEIVE_TOPIC_DETAIL'
+export const CLICK_USER_AVATAR = 'CLICK_USER_AVATAR'
+export const REQUEST_USER_INFO = 'REQUEST_USER_INFO'
+export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO'
 
 export function tabClick (tab) {
 	return {
@@ -66,5 +69,36 @@ export function fetchTopicDetail (id) {
 		return fetch(`https://cnodejs.org/api/v1/topic/${id}`)
 			.then(res => res.json())
 			.then(json => dispatch(receiveTopicDetail(id, json)))
+	}
+}
+
+export function userAvatarClick (userName) {
+	return {
+		type: CLICK_USER_AVATAR,
+		userName
+	}
+}
+
+export function requestUserInfo (userName) {
+	return {
+		type: REQUEST_USER_INFO,
+		userName
+	}
+}
+
+export function receiveUserInfo (userName, json) {
+	return {
+		type: RECEIVE_USER_INFO,
+		userName,
+		userInfo: json.data
+	}
+}
+
+export function fetchUserInfo (userName) {
+	return dispatch => {
+		dispatch(requestUserInfo(userName))
+		return fetch(`https://cnodejs.org/api/v1/user/${userName}`)
+			.then(res => res.json())
+			.then(json => dispatch(receiveUserInfo(userName, json)))
 	}
 }

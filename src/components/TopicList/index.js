@@ -44,7 +44,16 @@ export default class TopicList extends Component {
 	          	{topics.map(topic => 
 	          		<li key={topic.id}>
 	          			<div className="left-wrap">
-	          				<img className="avatar" src={topic.author['avatar_url']} alt={topic.author['loginname']} />
+	          				<Link
+	          					to={`/user/${topic.author['loginname']}`}
+	          				>
+		          				<img 
+		          					className="avatar" 
+		          					src={topic.author['avatar_url']} 
+		          					alt={topic.author['loginname']} 
+		          					onClick={() => this.props.handleClickUserAvatar(topic.author['loginname'])}
+	          					/>
+	          				</Link>
 	          			</div>
 	          			<div className="right-wrap">
 		          			<div className="top-info">
