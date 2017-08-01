@@ -17,8 +17,39 @@
 		.divider
 			color #ccc
 	.panel-body
-		padding 10px
+		padding-left 10px
 		font-size 12px
+		.user-avatar-wrap
+			position relative
+			height 40px
+			margin-bottom 10px
+			.user-avatar
+				width 40px
+				height 40px
+			.user-name
+				position absolute
+				top 50%
+				transform translateY(-50%)
+				left 50px
+				display inline-block
+				color #778087
 		.topic-list
 			.list-item
-				height 50px
+				display block
+				height 40px
+				padding 5px 10px 5px 0
+				.left-content
+					float left
+					width 30px
+					height 30px
+					.tiny-avatar
+						width 30px
+						height 30px
+				.right-content
+					margin-left 45px
+					a
+						display block
+						color #00a1d6
+						text-decoration none
+					span
+						float right

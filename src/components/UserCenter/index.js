@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { fetchUserInfo } from '../../actions'
+import { prettyDate } from '../../common'
 import style from './style.styl'
 
 class UserCenter extends Component {
@@ -25,7 +26,7 @@ class UserCenter extends Component {
 					</div>
 					<div className="panel-body">
 						<div className="user-avatar-wrap">
-							<img className="user-avatar" src={userInfo.avatar_url} style={{width: '40px', height: '40px'}} />
+							<img className="user-avatar" src={userInfo.avatar_url} />
 							<span className="user-name">{userInfo.loginname}</span>
 						</div>
 						<div className="user-score">{userInfo.score} 积分</div>
@@ -36,7 +37,15 @@ class UserCenter extends Component {
 					<div className="panel-body">
 						<ul className="topic-list">
 							{userInfo.recent_topics.map(item => 
-								<li key={item.id} className="list-item"></li>
+								<li key={item.id} className="list-item">
+									<div className="left-content">
+										<img className="tiny-avatar" src={item.author.avatar_url} />
+									</div>
+									<div className="right-content">
+										<Link to={`/topic/${item.id}`}>{item.title}</Link>
+										<span className="last-reply-wrap">{prettyDate(item.last_reply_at)}</span>
+									</div>
+								</li>
 							)}
 						</ul>
 					</div>
@@ -46,7 +55,15 @@ class UserCenter extends Component {
 					<div className="panel-body">
 						<ul className="topic-list">
 							{userInfo.recent_replies.map(item => 
-								<li key={item.id} className="list-item"></li>
+								<li key={item.id} className="list-item">
+									<div className="left-content">
+										<img className="tiny-avatar" src={item.author.avatar_url} />
+									</div>
+									<div className="right-content">
+	          				<Link to={`/topic/${item.id}`}>{item.title}</Link>
+	          				<span className="last-reply-wrap">{prettyDate(item.last_reply_at)}</span>
+									</div>
+								</li>
 							)}
 						</ul>
 					</div>

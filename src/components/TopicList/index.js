@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { prettyDate } from '../../common'
 import style from './style.styl'
 
 const TABS = [
@@ -70,7 +71,7 @@ export default class TopicList extends Component {
 	        					<div className="bottom-info">
 	        						<span>{topic.reply_count} / {topic.visit_count}</span>
 	        						<span className="topic-info">{(TABS.filter(item => item.code == topic.tab)[0] || {}).title}</span>
-	        						<span className="date-info">{new Date(topic.create_at).toLocaleString()}</span>
+	        						<span className="date-info">{prettyDate(topic.create_at)}</span>
 	        					</div>
 	          			</div>
         				</li>
