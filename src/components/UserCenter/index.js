@@ -19,7 +19,7 @@ class UserCenter extends Component {
 
 		return userInfo ? 
 			<div className="user-center-wrap">
-				<div className="user-homepage">
+				<div className="block-item">
 					<div className="panel-header">
 						<span className="homepage-title">个人主页</span>
 						<span className="divider">/</span>
@@ -32,7 +32,7 @@ class UserCenter extends Component {
 						<div className="user-score">{userInfo.score} 积分</div>
 					</div>
 				</div>
-				<div className="recent-create-topics">
+				<div className="block-item">
 					<div className="panel-header">最近创建的话题</div>
 					<div className="panel-body">
 						<ul className="topic-list">
@@ -50,7 +50,7 @@ class UserCenter extends Component {
 						</ul>
 					</div>
 				</div>
-				<div className="recent-join-topics">
+				<div className="block-item">
 					<div className="panel-header">最近参与的话题</div>
 					<div className="panel-body">
 						<ul className="topic-list">
