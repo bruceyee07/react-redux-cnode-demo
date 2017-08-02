@@ -32,7 +32,7 @@ export default class TopicList extends Component {
 		const { isFetching, topics } = this.props
 		
 		return (
-   		<div>
+   		<div className="topic-list-wrapper">
 				{isFetching && topics.length === 0 &&
 	        <h2>Loading...</h2>
 	      }

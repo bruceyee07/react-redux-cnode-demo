@@ -1,4 +1,4 @@
-export function prettyDate (date) {
+export const prettyDate = (date) => {
 	date = new Date(date)
 
 	const minute = 60 * 1000
@@ -33,4 +33,24 @@ export function prettyDate (date) {
     return r + '分钟前'
   } 
   return '刚刚'
+}
+
+export const getScrollValue = () => {
+  if (window.pageYOffset != null) {
+    // 支持IE9 +
+    return{
+      left: window.pageXOffset,
+      top: window.pageYOffset
+    }
+  } else if (document.compatMode == 'CSS1Compat') {
+  // 声明了DTD
+    return {
+      left:document.documentElement.scrollLeft,
+      top:document.documentElement.scrollTop
+    }
+  }
+  return {
+    left: document.body.scrollLeft,
+    top: document.body.scrollTop
+  }
 }
