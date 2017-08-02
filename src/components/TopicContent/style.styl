@@ -12,6 +12,8 @@
 			margin-top 20px
 		&:last-child
 			margin-bottom 0
+		img
+			width 940px
 		.top-bar
 			border-bottom 1px solid #eeeeee
 			.title
@@ -32,11 +34,18 @@
 					visibility hidden
 					height 0
 					clear both
+		.topic-content
+			h2
+				margin-top 20px
+				border-bottom 1px solid #eeeeee
+			p
+				padding 10px 0
 		.reply-list
 			font-size 12px
 			.list-item
+				position relative
 				display block
-				height 40px
+				min-height 40px
 				padding 5px 10px 5px 0
 				box-sizing border-box
 				background-color #fff
@@ -48,11 +57,18 @@
 					.tiny-avatar
 						width 30px
 						height 30px
-				.right-content
+				.main-content
 					margin-left 45px
-					a
+					margin-right 50px
+					line-height 1.7rem
+					.reply-content
 						display block
-						color #00a1d6
+						margin-right 100px
+						overflow hidden
+						text-overflow ellipsis
+						white-space nowrap
 						text-decoration none
-					span
-						float right
+				.right-content
+					position absolute
+					bottom 5px
+					right 0

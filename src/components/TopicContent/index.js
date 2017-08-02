@@ -28,7 +28,7 @@ class TopicContent extends Component {
 		  				<li className="list-item">{(currentTopic.detail || {}).visit_count} 次浏览</li>
 		  			</ul>
 		  		</div>
-		  		<div className="main-content" dangerouslySetInnerHTML={{__html: (currentTopic.detail || {}).content}} />
+		  		<div className="topic-content" dangerouslySetInnerHTML={{__html: (currentTopic.detail || {}).content}} />
 		  	</div>
 		  	<div className="block-item">
 		  		<ul className="reply-list">
@@ -37,8 +37,10 @@ class TopicContent extends Component {
 	  						<div className="left-content">
 	  							<img className="tiny-avatar" src={item.author.avatar_url} />
 	  						</div>
+	  						<div className="main-content">
+	  							<div className="reply-content" dangerouslySetInnerHTML={{__html: item.content}} />
+	  						</div>
 	  						<div className="right-content">
-	  							<Link to={`/topic/${item.id}`} dangerouslySetInnerHTML={{__html: item.content}} />
 	  							<span className="last-reply-wrap">{prettyDate(item.last_reply_at)}</span>
 	  						</div>
 	  					</li>
