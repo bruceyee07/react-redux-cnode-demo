@@ -1,28 +1,42 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { tabClick } from '../../actions'
-import style from './style.styl'
+import cx from 'classnames'
+import './style.styl'
+
+const TABS = [
+	{
+		title: '首页',
+		code: 'index'
+	},
+	{
+		title: '发表',
+		code: 'deliver',
+	},
+	{
+		title: '消息',
+		code: 'message'
+	},
+	{
+		title: '我的',
+		code: 'ucenter'
+	}
+]
 
 export default class Footer extends Component {
 	render () {
-		const { topics, isFetching } = this.props
-
+		const { handleClickFooter } = this.props
+		
 		return (
-   		<div>
-				{isFetching && topics.length === 0 &&
-	        <h2>Loading...</h2>
-	      }
-	      {!isFetching && topics.length === 0 &&
-	        <h2>Empty.</h2>
-	      }
-	      {!!topics.length &&
-	        <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-	          <ul>
-	          	{topics.map(topic => <li key={topic.id}>{topic.title}</li>)}
-	          </ul>
-	        </div>
-	      }
-   		</div>
+			<ul className="nav-footer">
+				{TABS.map(tab => 
+					<li
+						key={tab.code}
+						className={cx('list-item')}
+					>
+						{tab.title}
+					</li>
+				)}
+			</ul>
 		)
 	}
 }

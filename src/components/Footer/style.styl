@@ -1,0 +1,28 @@
+.nav-footer
+	position fixed
+	bottom 0
+	width 100%
+	z-index 1
+	list-style none
+	li
+		display block
+		float left
+		width 25%
+		text-align center
+		cursor pointer
+		background #e9f4ed
+		height 40px
+		line-height 40px
+		color #555
+		border-right 1px solid #fff
+		box-sizing border-box
+		&:last-child 
+			border-right none
+	li.active
+		border-bottom 2px solid #f7e31b
+	&:after
+		display block
+		clear both
+		content ""
+		visibility hidden
+		height 0
