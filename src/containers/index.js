@@ -6,6 +6,7 @@ import HomePage from '../components/HomePage'
 import TopicContent from '../components/TopicContent'
 import UserCenter from '../components/UserCenter'
 import LoginPage from '../components/LoginPage'
+import AccountInfo from '../components/AccountInfo'
 import NotFound from '../components/NotFound'
 
 import './style.styl'
@@ -22,6 +23,7 @@ export default class Root extends Component {
             <Route path="/topic/:id" exact component={TopicContent} />
       			<Route path="/user/:userName" exact component={UserCenter} />
             <Route path="/login" exact component={LoginPage} />
+            <Route path="/account" exact component={AccountInfo} />
       		</div>
       	</HashRouter>
       </Provider>
