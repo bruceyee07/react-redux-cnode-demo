@@ -14,6 +14,8 @@ export const LOGIN_FAILED = 'LOGIN_FAILED'
 export const LOGIN_RESET = 'LOGIN_RESET'
 export const LOGOUT = 'LOGOUT'
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT'
+export const DELIVER_SUCCEED = 'DELIVER_SUCCEED'
+export const DELIVER_FAILED = 'DELIVER_FAILED'
 
 export const tabClick = (tab) => {
 	return {
@@ -156,5 +158,39 @@ export const requestLogin = (token) => {
 export const logout = () => {
 	return  {
 		type: LOGOUT
+	}
+}
+
+export const deliverSucceed = (topic_id) => {
+	return {
+		type: DELIVER_SUCCEED,
+		topic_id
+	}
+}
+
+export const deliverFailed = () => {
+	return {
+		type: DELIVER_FAILED
+	}
+}
+
+export const deliver = (token, tab, title, content, callback) => {
+	return dispatch => {
+		return fetch('https://cnodejs.org/api/v1/topics', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: `accesstoken=${token}&tab=${tab}&title=${title}&content=${content}`
+		})
+		.then(res => res.json())
+		.then(json => {
+			if (json.success) {
+				dispatch(deliverSucceed(json.topic_id))
+				dispatch(fetchTopicDetail(json.topic_id)).then(() => callback(json.topic_id))
+			} else {
+				dispatch(deliverFailed(json.error_msg))
+			}
+		})
 	}
 }

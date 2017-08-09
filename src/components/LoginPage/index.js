@@ -16,7 +16,7 @@ class LoginPage extends Component {
 		const { succeed, failed, errorMsg } = prevProps.loginPage
 
 		if (succeed) {
-			location.href = '/#/account'
+			this.props.history.goBack()
 		}
 		if (failed) {
 			this.refs['token-input'].value = ''
