@@ -13,6 +13,7 @@ export const LOGIN_SUCCEED = 'LOGIN_SUCCEED'
 export const LOGIN_FAILED = 'LOGIN_FAILED'
 export const LOGIN_RESET = 'LOGIN_RESET'
 export const LOGOUT = 'LOGOUT'
+export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT'
 
 export const tabClick = (tab) => {
 	return {
@@ -149,5 +150,11 @@ export const requestLogin = (token) => {
 			}
 		})
 		.then(setTimeout(() => dispatch(loginReset()), 2000))
+	}
+}
+
+export const logout = () => {
+	return  {
+		type: LOGOUT
 	}
 }

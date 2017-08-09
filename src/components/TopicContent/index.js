@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { markdown } from 'markdown'
 import { fetchTopicDetail } from '../../actions'
-import { prettyDate } from '../../common'
+import { prettyDate } from '../../utils'
 import style from './style.styl'
 
 class TopicContent extends Component {

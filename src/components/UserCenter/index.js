@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { fetchUserInfo } from '../../actions'
-import { prettyDate } from '../../common'
+import { prettyDate } from '../../utils'
 import style from './style.styl'
 
 class UserCenter extends Component {

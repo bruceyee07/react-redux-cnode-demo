@@ -38,9 +38,6 @@ class LoginPage extends Component {
 					<div><input ref="token-input" className="token-input" type="password" placeholder="请输入您的access token" /></div>
 					<div><button ref="submit-btn" type="submit" className="submit-btn" onClick={() => {
 						this.handleSubmit()
-						Toast.show({tips: '删除报表成功'}, () => {
-						  
-						})
 					}}>提交</button></div>
 				</div>
 			</div>

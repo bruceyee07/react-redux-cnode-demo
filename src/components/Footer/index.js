@@ -1,24 +1,29 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import cx from 'classnames'
 import './style.styl'
 
 const TABS = [
 	{
 		title: '首页',
-		code: 'index'
+		code: 'index',
+		url: '/'
 	},
 	{
 		title: '发表',
 		code: 'deliver',
+		url: '/deliver'
 	},
 	{
 		title: '消息',
-		code: 'message'
+		code: 'message',
+		url: '/message'
 	},
 	{
 		title: '我的',
-		code: 'ucenter'
+		code: 'ucenter',
+		url: '/account'
 	}
 ]
 
@@ -33,7 +38,7 @@ export default class Footer extends Component {
 						key={tab.code}
 						className={cx('list-item')}
 					>
-						{tab.title}
+						<Link to={tab.url}>{tab.title}</Link>
 					</li>
 				)}
 			</ul>

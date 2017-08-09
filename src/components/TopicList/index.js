@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { prettyDate } from '../../common'
+import { prettyDate } from '../../utils'
 import style from './style.styl'
 
 const TABS = [
