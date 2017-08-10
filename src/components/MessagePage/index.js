@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom' 
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import LinkToLoginPage from '../LinkToLoginPage'
@@ -76,11 +77,15 @@ class MessagePage extends Component {
 		  		<div className="message-content">
 		  			<ul className="message-list">
 		  				{
-		  					(messagePage.messages[this.state.currentTab] || []).map(item => 
-		  						<li key={item.id} className="list-item">
-		  							{item.id}
-		  						</li>
-	  						)
+		  					(messagePage.messages[this.state.currentTab] || []).map(item => {
+		  						return (
+		  							<li key={item.id} className="list-item">
+		  								<Link to={`/user/${item.author.loginname}`}>{item.author.loginname}</Link> 回复了你的话题 
+		  								<Link to={`/topic/${item.topic.id}`}> {item.topic.title}</Link>
+		  								<span className="last-reply-at">{prettyDate(item.create_at)}</span>
+		  							</li>
+	  							)
+		  					})
 		  				}
 		  			</ul>
 		  		</div>
