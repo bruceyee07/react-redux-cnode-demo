@@ -17,6 +17,10 @@ export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT'
 export const DELIVER_SUCCEED = 'DELIVER_SUCCEED'
 export const DELIVER_FAILED = 'DELIVER_FAILED'
 export const CLICK_FOOTER = 'CLICK_FOOTER'
+export const REQUEST_MESSAGES = 'REQUEST_MESSAGES'
+export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES'
+export const REQUEST_UNREAD_MESSAGES_COUNT = 'REQUEST_UNREAD_MESSAGES_COUNT'
+export const RECEIVE_UNREAD_MESSAGES_COUNT = 'RECEIVE_UNREAD_MESSAGES_COUNT'
 
 export const tabClick = (tab) => {
 	return {
@@ -200,5 +204,59 @@ export const footerClick = (tab) => {
 	return {
 		type: CLICK_FOOTER,
 		tab
+	}
+}
+
+export const requestMessages = () => {
+	return {
+		type: REQUEST_MESSAGES
+	}
+}
+
+export const receiveMessages = (messages) => {
+	return {
+		type: RECEIVE_MESSAGES,
+		messages
+	}
+}
+
+export const fetchMessages = (token) => {
+	return dispatch => {
+		dispatch(requestMessages())
+
+		return fetch(`https://cnodejs.org/api/v1/messages?accesstoken=${token}`)
+		.then(res => res.json())
+		.then(json => {
+			if (json.success) {
+				dispatch(receiveMessages(json.data))
+			}
+		})
+	}
+}
+
+export const requestUnreadMessagesCount = () => {
+	return {
+		type: REQUEST_UNREAD_MESSAGES_COUNT
+	}
+}
+
+export const receiveUnreadMessagesCount = (count) => {
+	return {
+		type: RECEIVE_UNREAD_MESSAGES_COUNT,
+		count
+	}
+}
+
+export const fetchUnreadMessagesCount = (token) => {
+	return dispatch => {
+		dispatch(requestUnreadMessagesCount())
+
+		return fetch(`https://cnodejs.org/api/v1/message/count?accesstoken=${token}`)
+		.then(res => res.json())
+		.then(json => {
+			if (json.success) {
+				dispatch(receiveUnreadMessagesCount(json.data))
+			}
+		})
 	}
 }

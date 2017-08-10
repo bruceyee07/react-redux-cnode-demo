@@ -8,6 +8,7 @@ import UserCenter from '../components/UserCenter'
 import LoginPage from '../components/LoginPage'
 import DeliverPage from '../components/DeliverPage'
 import AccountInfo from '../components/AccountInfo'
+import MessagePage from '../components/MessagePage'
 import NotFound from '../components/NotFound'
 
 import './style.styl'
@@ -25,6 +26,7 @@ export default class Root extends Component {
       			<Route path="/user/:userName" exact component={UserCenter} />
             <Route path="/login" exact component={LoginPage} />
             <Route path="/deliver" exact component={DeliverPage} />
+            <Route path="/message" exact component={MessagePage} />
             <Route path="/account" exact component={AccountInfo} />
       		</div>
       	</HashRouter>
