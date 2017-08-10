@@ -15,7 +15,6 @@ class HomePage extends Component {
 		this.handleClickTab = this.handleClickTab.bind(this)
 		this.handleClickTopic = this.handleClickTopic.bind(this)
 		this.handleClickUserAvatar = this.handleClickUserAvatar.bind(this)
-		this.handleClickFooter = this.handleClickFooter.bind(this)
 	}
 	componentDidMount() {
 		const { dispatch, homePage } = this.props
@@ -37,9 +36,7 @@ class HomePage extends Component {
 	 		 		handleClickTopic={this.handleClickTopic}
 	 		 		handleClickUserAvatar={this.handleClickUserAvatar}
 	 	 		/>
-	 	 		<Footer
-	 	 			handleClickFooter={this.handleClickFooter}
-	 	 		/>
+	 	 		<Footer />
    		</div>
 		)
 	}
@@ -54,9 +51,6 @@ class HomePage extends Component {
 	handleClickUserAvatar (userName) {
 		this.props.dispatch(userAvatarClick(userName))
 		this.props.dispatch(fetchUserInfo(userName))
-	}
-	handleClickFooter () {
-
 	}
 }
 

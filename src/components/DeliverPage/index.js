@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import LinkToLoginPage from '../LinkToLoginPage'
+import Footer from '../Footer'
 import { deliver } from '../../actions'
 import style from './style.styl'
 
@@ -72,6 +73,7 @@ class DeliverPage extends Component {
 		  		</div>
 		  		<button className="deliver-btn" type="submit" onClick={this.handleSubmit}>发表</button>
 		  	</div>
+		  	<Footer />
 		  </div>
 		)
 	}

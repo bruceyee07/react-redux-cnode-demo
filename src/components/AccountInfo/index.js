@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import FontAwesome from 'react-fontawesome'
 import LinkToLoginPage from '../LinkToLoginPage'
+import Footer from '../Footer'
 import { fetchUserInfo, logout } from '../../actions'
 import { prettyDate } from '../../utils'
 import style from './style.styl'
@@ -66,6 +67,7 @@ class AccountInfo extends Component {
 		  			
 		  		</div>
 		  	</div>
+		  	<Footer />
 		  </div>
 		)
 	}

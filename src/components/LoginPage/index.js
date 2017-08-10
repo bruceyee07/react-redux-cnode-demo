@@ -8,11 +8,12 @@ import './style.styl'
 
 class LoginPage extends Component {
 	constructor (props) {
-		super (props)
+		super(props)
+		console.log(props)
 
 		this.handleSubmit = this.handleSubmit.bind(this)
 	}
-	componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate (prevProps, prevState) {
 		const { succeed, failed, errorMsg } = prevProps.loginPage
 
 		if (succeed) {

@@ -35,7 +35,7 @@ export default class NavTab extends Component {
 				{TABS.map(tab => 
 					<li
 						key={tab.code}
-						className={cx({active: tab.code == currentTab})}
+						className={cx({ active: tab.code == currentTab })}
 						onClick={() => handleClickTab(tab.code)}
 					>
 						{tab.title}

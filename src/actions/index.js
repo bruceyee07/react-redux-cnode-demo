@@ -16,6 +16,7 @@ export const LOGOUT = 'LOGOUT'
 export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT'
 export const DELIVER_SUCCEED = 'DELIVER_SUCCEED'
 export const DELIVER_FAILED = 'DELIVER_FAILED'
+export const CLICK_FOOTER = 'CLICK_FOOTER'
 
 export const tabClick = (tab) => {
 	return {
@@ -192,5 +193,12 @@ export const deliver = (token, tab, title, content, callback) => {
 				dispatch(deliverFailed(json.error_msg))
 			}
 		})
+	}
+}
+
+export const footerClick = (tab) => {
+	return {
+		type: CLICK_FOOTER,
+		tab
 	}
 }
