@@ -96,14 +96,18 @@ class AccountInfo extends Component {
 		  			</ul>
 		  		</div>
 		  		<div className="account-topic-content">
-		  			<ul className="account-topic-list">
-		  				{((userCenter.userInfo || {})[this.state.currentTab] || []).map(item => 
-		  					<li key={item.id} className="list-item">
-		  						<Link to={`/topic/${item.id}`}>{item.title}</Link>
-		  						<span className="last-reply-at">{prettyDate(item.last_reply_at)}</span>
-	  						</li>
-	  					)}
-		  			</ul>
+		  			{(() => {
+		  				return ((userCenter.userInfo || {})[this.state.currentTab] || []).length > 0 ? 
+				  			<ul className="account-topic-list">
+				  				{((userCenter.userInfo || {})[this.state.currentTab] || []).map(item => 
+				  					<li key={item.id} className="list-item">
+				  						<Link to={`/topic/${item.id}`}>{item.title}</Link>
+				  						<span className="last-reply-at">{prettyDate(item.last_reply_at)}</span>
+			  						</li>
+			  					)}
+				  			</ul> :
+				  			<div className="empty">暂无数据</div>
+		  			})()}
 		  		</div>
 		  	</div>
 		  	<Footer />

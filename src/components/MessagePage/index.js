@@ -75,19 +75,19 @@ class MessagePage extends Component {
 		  			</ul>
 		  		</div>
 		  		<div className="message-content">
-		  			<ul className="message-list">
-		  				{
-		  					(messagePage.messages[this.state.currentTab] || []).map(item => {
-		  						return (
+		  			{(() => {
+		  				return (messagePage.messages[this.state.currentTab] || []).length > 0 ?
+		  					<ul className="message-list">
+		  						{(messagePage.messages[this.state.currentTab] || []).map(item => 
 		  							<li key={item.id} className="list-item">
 		  								<Link to={`/user/${item.author.loginname}`}>{item.author.loginname}</Link> 回复了你的话题 
 		  								<Link to={`/topic/${item.topic.id}`}> {item.topic.title}</Link>
 		  								<span className="last-reply-at">{prettyDate(item.create_at)}</span>
 		  							</li>
-	  							)
-		  					})
-		  				}
-		  			</ul>
+	  							)}
+		  					</ul> :
+		  					<div className="empty">暂无数据</div>
+		  			})()}
 		  		</div>
 		  	</div>
 		  	<Footer />
