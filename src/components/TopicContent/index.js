@@ -30,7 +30,7 @@ class TopicContent extends Component {
 		  		</div>
 		  		<div className="topic-content" dangerouslySetInnerHTML={{__html: (currentTopic.detail || {}).content}} />
 		  	</div>
-		  	<div className="block-item">
+		  	{((currentTopic.detail || {}).replies || []).length > 0 && <div className="block-item">
 		  		<ul className="reply-list">
 	  				{((currentTopic.detail || {}).replies || []).map(item => 
 	  					<li key={item.id} className="list-item">
@@ -46,7 +46,7 @@ class TopicContent extends Component {
 	  					</li>
 	  				)}
 		  		</ul>
-		  	</div>
+		  	</div>}
 		  </div>
 		)
 	}
