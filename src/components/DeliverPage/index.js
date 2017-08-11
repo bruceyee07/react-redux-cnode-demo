@@ -38,8 +38,10 @@ class DeliverPage extends Component {
 		const title = this.refs['deliver-title-input'].value
 		const content = this.refs['deliver-content-textarea'].value
 
+		console.log(this.props.history)
+
 		dispatch(deliver(accountInfo.token, type, title, content, (id) => {
-			setTimeout(() => { this.props.history.go(`/topic/${id}`) }, 1000)
+			setTimeout(() => { this.props.history.push(`/topic/${id}`) }, 1000)
 		}))
 	}
 	render () {

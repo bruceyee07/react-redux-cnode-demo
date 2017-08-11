@@ -192,7 +192,8 @@ export const deliver = (token, tab, title, content, callback) => {
 		.then(json => {
 			if (json.success) {
 				dispatch(deliverSucceed(json.topic_id))
-				dispatch(fetchTopicDetail(json.topic_id)).then(() => callback(json.topic_id))
+				dispatch(fetchTopicDetail(json.topic_id))
+				callback(json.topic_id)
 			} else {
 				dispatch(deliverFailed(json.error_msg))
 			}
