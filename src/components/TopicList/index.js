@@ -29,15 +29,15 @@ const TABS = [
 
 export default class TopicList extends Component {
 	render () {
-		const { isFetching, topics } = this.props
+		const { isFetching, topics, handleScroll } = this.props
 		
 		return (
-   		<div className="topic-list-wrapper">
+   		<div className="topic-list-wrapper" onScroll={handleScroll}>
 				{isFetching && topics.length === 0 &&
-	        <h2>Loading...</h2>
+	        <h2 className="empty">Loading...</h2>
 	      }
 	      {!isFetching && topics.length === 0 &&
-	        <h2>Empty.</h2>
+	        <h2 className="empty">Empty.</h2>
 	      }
 	      {!!topics.length &&
 	        <div style={{ opacity: isFetching ? 0.5 : 1 }}>

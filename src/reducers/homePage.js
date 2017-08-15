@@ -11,7 +11,15 @@ export default function homePage (state = {
 		case REQUEST_TOPICS:
 			return { ...state, isFetching: true }
 		case RECEIVE_TOPICS:
-			let topicsByTab = Object.assign({}, state.topicsByTab, { [action.tab]: action.topics })
+			const { tab, page, topics } = action
+			let topicsByTab
+			if (state.topicsByTab[tab] && state.topicsByTab[tab].topics.length > 0) {
+				let preTopics = state.topicsByTab[tab].topics
+				topicsByTab = Object.assign({}, state.topicsByTab, { [tab]: { topics: preTopics.concat(topics), page }})
+			} else {
+				topicsByTab = Object.assign({}, state.topicsByTab, { [tab]: { topics, page }})
+			}
+			
 			return { ...state, isFetching: false, topicsByTab }
 		default:
 			return state

@@ -36,10 +36,11 @@ export const requestTopics = (tab) => {
 	}
 }
 
-export const receiveTopics = (tab, json) => {
+export const receiveTopics = (tab, page, json) => {
 	return {
 		type: RECEIVE_TOPICS,
 		tab,
+		page,
 		topics: json.data.map(child => child)
 	}
 }
@@ -49,7 +50,7 @@ export const fetchTopics = (tab = 'all', page = 1, limit = 20) => {
 		dispatch(requestTopics(tab))
 		return fetch(`https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}&limit=${limit}&mdrender=false`)
 			.then(res => res.json())
-			.then(json => dispatch(receiveTopics(tab, json)))
+			.then(json => dispatch(receiveTopics(tab, page, json)))
 	}
 }
 

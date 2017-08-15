@@ -66,7 +66,7 @@ export const getScrollValue = () => {
   }
 }
 
-export default function getPageSize () {
+export const getPageSize = () => {
 	let xScroll, yScroll
 
 	if (window.innerHeight && window.scrollMaxY) {
